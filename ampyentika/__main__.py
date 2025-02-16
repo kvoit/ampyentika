@@ -69,8 +69,7 @@ class Ampyentika:
             else:
                 logging.debug(f"Failed to connect, return code {rc}")
 
-        client = mqtt_client.Client(client_id=client_id,
-                                    callback_api_version=mqtt_client.CallbackAPIVersion.VERSION2)
+        client = mqtt_client.Client(client_id=client_id)
 
         client.username_pw_set(username, password)
         client.on_connect = on_connect
