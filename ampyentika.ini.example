@@ -1,0 +1,11 @@
+[General]
+name = ambientika_bedroom
+unique_id = BEEF66
+
+[MQTT]
+host = 10.166.16.1
+port = 1883
+username = ampyentika
+password = secret
+topic = bedroom/ir/ambientika
+ir_topic = bedroomir/send/nec
