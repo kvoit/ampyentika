@@ -39,20 +39,20 @@ class Ampyentika:
 
 
             self.mqtt_receive_client = self._connect_mqtt(
-                client_id=f"{self.config["General"]["name"].lower()}-receive-"
+                client_id=f'{self.config["General"]["name"].lower()}-receive-'
                           f"{''.join(random.choices(string.ascii_uppercase + string.digits, k=6))}",
                 username=self.config["MQTT"]["username"],
                 password=self.config["MQTT"]["password"],
                 host=self.config["MQTT"]["host"],
                 port=int(self.config["MQTT"]["port"]))
             self.mqtt_send_client = self._connect_mqtt(
-                client_id=f"{self.config["General"]["name"].lower()}-send-"
+                client_id=f'{self.config["General"]["name"].lower()}-send-'
                           f"{''.join(random.choices(string.ascii_uppercase + string.digits, k=6))}",
                 username=self.config["MQTT"]["username"],
                 password=self.config["MQTT"]["password"],
                 host=self.config["MQTT"]["host"],
                 port=int(self.config["MQTT"]["port"]))
-            self._subscribe_mqtt([f"{self.config["MQTT"]["topic"]}/#"])
+            self._subscribe_mqtt([f'{self.config["MQTT"]["topic"]}/#'])
 
             self.mqtt_loop_thread = Thread(target=self.mqtt_receive_client.loop_forever, daemon=True)
             self.mqtt_loop_thread.start()
@@ -139,7 +139,7 @@ class Ampyentika:
         self.mqtt_send_client.publish(self.config["MQTT"]["ir_topic"],
                                  f"0x{level_code[0:4]} 0x{level_code[4:8]} 2")
         self.mqtt_send_client.loop()
-        self.mqtt_send_client.publish(f"{self.config["MQTT"]["topic"]}/level",
+        self.mqtt_send_client.publish(f'{self.config["MQTT"]["topic"]}/level',
                                          level_key,
                                          retain=True)
         self.mqtt_send_client.loop()
@@ -156,7 +156,7 @@ class Ampyentika:
         if mode_key not in NonPersistentModes:
             logging.info(f"Set mode to {mode_key}")
             self.mode = mode_key
-            self.mqtt_send_client.publish(f"{self.config["MQTT"]["topic"]}/mode",
+            self.mqtt_send_client.publish(f'{self.config["MQTT"]["topic"]}/mode',
                                              mode_key,
                                              retain=True)
             self.mqtt_send_client.loop()
